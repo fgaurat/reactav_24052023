@@ -8,11 +8,7 @@ import { FormEvent, FormEventHandler } from "react";
 
 export default function Home() {
   const { todos, setTodos, loading, error } = useFetchTodos();
-  const {
-    deleteTodo,
-    loading: loadingDelete,
-    error: errorDelete,
-  } = useDeleteTodo();
+  const { deleteTodo,loading: loadingDelete, error: errorDelete } = useDeleteTodo();
 
   if (loading) {
     return <>Loading ...</>;
@@ -29,9 +25,8 @@ export default function Home() {
     setTodos(t);
   };
 
-  const handleSubmit = (event: React.SyntheticEvent) => {
-    event.preventDefault();
-    console.log("handleSubmit");
+  const handleSubmit = (todo: Todo) => {
+    console.log(todo);
   };
 
   return (
