@@ -5,9 +5,7 @@ import { Todo } from '../../core/Todo'
 function Home() {
 
 
-    const handleSubmit = (todo:Todo)=>{
-        console.log("handleSubmit "+todo)
-    }
+
 
   return (
     <>
@@ -20,7 +18,7 @@ function Home() {
         </div>
         <div className="w-full sm:w-auto flex-grow p-4">
 
-          <TodoForm handleSubmit={handleSubmit}></TodoForm>
+          <TodoForm></TodoForm>
         </div>
       </div>
   </>

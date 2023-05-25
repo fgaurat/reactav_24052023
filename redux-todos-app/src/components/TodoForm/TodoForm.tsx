@@ -1,13 +1,14 @@
 import { FormEvent, useState } from "react";
 import { Todo } from "../../core/Todo";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../app/store";
+import { saveTodoAsync } from "../../slices/todosSlice";
 
-interface TodoFormProps {
-  handleSubmit: (todo: Todo) => void;
-}
 
-function TodoForm({ handleSubmit }: TodoFormProps) {
+function TodoForm() {
   const initialState = { title: "Le Titre de la todo", completed: false };
   const [localState, setLocalState] = useState(initialState);
+  const dispatch = useDispatch<AppDispatch>()
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const target = event.target;
@@ -18,7 +19,8 @@ function TodoForm({ handleSubmit }: TodoFormProps) {
 
   const doSubmit = (e: FormEvent) => {
     e.preventDefault();
-    handleSubmit(localState as Todo);
+    const todoToSave = localState as Todo
+    dispatch(saveTodoAsync(todoToSave))
   };
 
   return (
