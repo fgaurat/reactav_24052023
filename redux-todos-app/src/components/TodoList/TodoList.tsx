@@ -1,14 +1,13 @@
+import { useSelector } from "react-redux";
 import { Todo } from "../../core/Todo";
 import TodoRow from "./TodoRow";
 
+export default function TodoList() {
+  const todos = useSelector((state) => state.todoListState.todos)
 
-export interface TodoListProps{
-  todos:Todo[]
-  doDelete:(todo:Todo)=>void
-
-}
-export default function TodoList({todos,doDelete}:TodoListProps) {
-
+  const doDelete = (todo:Todo)=>{
+    console.log("delete "+todo)
+  }
 
   return (
     <div className="px-4 sm:px-6 lg:px-8">
@@ -49,7 +48,7 @@ export default function TodoList({todos,doDelete}:TodoListProps) {
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
-                {todos.map((todo) => (
+                {todos.map((todo:Todo) => (
                   <TodoRow todo={todo} key={todo.id} doDelete={doDelete}/>
                 ))}
               </tbody>

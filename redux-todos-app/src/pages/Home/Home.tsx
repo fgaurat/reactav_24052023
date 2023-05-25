@@ -1,34 +1,10 @@
-import React from 'react'
 import TodoList from '../../components/TodoList/TodoList'
 import TodoForm from '../../components/TodoForm/TodoForm'
 import { Todo } from '../../core/Todo'
 
 function Home() {
 
-    const todos = [
-        {
-            "userId": 1,
-            "id": 7,
-            "title": "illo expedita consequatur quia in",
-            "completed": false
-          },
-          {
-            "userId": 1,
-            "id": 8,
-            "title": "quo adipisci enim quam ut ab",
-            "completed": true
-          },
-          {
-            "userId": 1,
-            "id": 9,
-            "title": "molestiae perspiciatis ipsa",
-            "completed": false
-          },        
-    ]
 
-    const doDelete = (todo:Todo)=>{
-        console.log("doDelete "+todo)
-    }
     const handleSubmit = (todo:Todo)=>{
         console.log("handleSubmit "+todo)
     }
@@ -40,7 +16,7 @@ function Home() {
     <div className="flex flex-col sm:flex-row space-x-0 sm:space-x-4">
 
         <div className="w-full sm:w-auto flex-grow p-4">
-          <TodoList todos={todos} doDelete={doDelete}></TodoList>
+          <TodoList></TodoList>
         </div>
         <div className="w-full sm:w-auto flex-grow p-4">
 
