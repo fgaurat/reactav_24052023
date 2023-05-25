@@ -3,7 +3,7 @@ import { Todo } from "../../core/Todo";
 import TodoRow from "./TodoRow";
 import { AppDispatch, RootState } from "../../app/store";
 import { useEffect } from "react";
-import { getTodosAsync } from "../../slices/todosSlice";
+import { deleteTodoAsync, getTodosAsync } from "../../slices/todosSlice";
 
 export default function TodoList() {
   const todos = useSelector((state:RootState) => state.todoListState.todos)
@@ -12,12 +12,12 @@ export default function TodoList() {
   useEffect(()=>{
     dispatch(getTodosAsync())
   },[])
-
-
   
-
+  
+  
+  
   const doDelete = (todo:Todo)=>{
-    console.log("delete "+todo)
+    dispatch(deleteTodoAsync(todo))
   }
 
   return (

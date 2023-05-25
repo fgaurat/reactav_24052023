@@ -19,6 +19,12 @@ export const getTodosAsync = createAsyncThunk("todos/getTodos",async ()=>{
     return todos
 })
 
+export const deleteTodoAsync = createAsyncThunk("todos/deleteTodo",async (todo:Todo)=>{
+    const dao:DAO<Todo> = new TodoDAO()
+    await dao.delete(todo)
+    return todo
+})
+
 
   export const todoSlice = createSlice(
     {
@@ -28,6 +34,9 @@ export const getTodosAsync = createAsyncThunk("todos/getTodos",async ()=>{
         extraReducers:{
           [getTodosAsync.fulfilled.type]: (state,action)=>{
               state.todos = action.payload
+          },
+          [deleteTodoAsync.fulfilled.type]: (state,action)=>{
+            state.todos = state.todos.filter(t => t.id !== action.payload.id)
           }
         }
     }
