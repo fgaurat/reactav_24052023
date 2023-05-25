@@ -28,7 +28,8 @@ export default function Home() {
   const handleSubmit = (todo: Todo) => {
     console.log(todo);
     todos.push(todo)
-    setTodos([...todos])
+    
+    // setTodos([...todos])
   };
 
   return (
