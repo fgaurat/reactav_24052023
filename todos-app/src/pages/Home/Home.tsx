@@ -5,10 +5,12 @@ import TodoList from "../../components/TodoList/TodoList";
 import { Todo } from "../../core/Todo";
 import TodoForm from "../../components/TodoForm/TodoForm";
 import { FormEvent, FormEventHandler } from "react";
+import useSaveTodo from "../../hooks/useSaveTodo";
 
 export default function Home() {
   const { todos, setTodos, loading, error } = useFetchTodos();
   const { deleteTodo,loading: loadingDelete, error: errorDelete } = useDeleteTodo();
+  const { saveTodo } = useSaveTodo();
 
   if (loading) {
     return <>Loading ...</>;
@@ -25,10 +27,11 @@ export default function Home() {
     setTodos(t);
   };
 
-  const handleSubmit = (todo: Todo) => {
+  const handleSubmit = async (todo: Todo) => {
     console.log(todo);
-    todos.push(todo)
-    
+    await saveTodo(todo)
+    // todos.push(todo)
+
     // setTodos([...todos])
   };
 

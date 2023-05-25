@@ -16,7 +16,7 @@ export class TodoDAO implements DAO<Todo>{
     }
 
 
-    save(todo:Todo){
+    save(todo:Todo): Promise<Todo>{
         const url = import.meta.env.VITE_TODOS_URL
         return fetch(url,{method:"POST",headers:{'Content-type':'application/json'},body:JSON.stringify(todo)}).then(resp => resp.json())
     }
