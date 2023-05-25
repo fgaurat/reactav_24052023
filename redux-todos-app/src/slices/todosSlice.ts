@@ -1,5 +1,7 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { Todo } from '../core/Todo'
+import { DAO } from '../core/DAO'
+import { TodoDAO } from '../core/TodoDAO'
 
 
 interface TodoListState{
@@ -7,33 +9,27 @@ interface TodoListState{
 }
 
 const initialState: TodoListState = {
-    todos: [
-        {
-            "userId": 1,
-            "id": 7,
-            "title": "illo expedita consequatur quia in",
-            "completed": false
-          },
-          {
-            "userId": 1,
-            "id": 8,
-            "title": "quo adipisci enim quam ut ab",
-            "completed": true
-          },
-          {
-            "userId": 1,
-            "id": 9,
-            "title": "molestiae perspiciatis ipsa",
-            "completed": false
-          },                
-    ],
+    todos: []
   }
+
+
+export const getTodosAsync = createAsyncThunk("todos/getTodos",async ()=>{
+    const dao:DAO<Todo> = new TodoDAO()
+    const todos = await dao.findAll()
+    return todos
+})
+
 
   export const todoSlice = createSlice(
     {
         name:"todoList",
         initialState,
-        reducers:{}
+        reducers:{},
+        extraReducers:{
+          [getTodosAsync.fulfilled.type]: (state,action)=>{
+              state.todos = action.payload
+          }
+        }
     }
   )
 
