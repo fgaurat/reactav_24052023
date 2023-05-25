@@ -6,11 +6,14 @@ import { Todo } from "../../core/Todo";
 import TodoForm from "../../components/TodoForm/TodoForm";
 import { FormEvent, FormEventHandler } from "react";
 import useSaveTodo from "../../hooks/useSaveTodo";
+import HOCCompletedTodoList from "../../components/HOCCompletedTodoList/HOCCompletedTodoList";
 
 export default function Home() {
   const { todos, setTodos, loading, error } = useFetchTodos();
   const { deleteTodo,loading: loadingDelete, error: errorDelete } = useDeleteTodo();
   const { saveTodo } = useSaveTodo();
+
+  const CompletedTodoList = HOCCompletedTodoList(TodoList);
 
   if (loading) {
     return <>Loading ...</>;
@@ -21,7 +24,6 @@ export default function Home() {
   }
 
   const doDelete = async (todo: Todo) => {
-    // console.log(todo)
     await deleteTodo(todo);
     const t = todos.filter((t) => t.id !== todo.id);
     setTodos(t);
@@ -29,10 +31,10 @@ export default function Home() {
 
   const handleSubmit = async (todo: Todo) => {
     console.log(todo);
-    await saveTodo(todo)
-    // todos.push(todo)
+    const newTodo = await saveTodo(todo)
+    todos.push(newTodo!)
 
-    // setTodos([...todos])
+    setTodos([...todos])
   };
 
   return (
@@ -43,6 +45,7 @@ export default function Home() {
 
           <div className="w-full sm:w-auto flex-grow p-4">
             <TodoList todos={todos} doDelete={doDelete}></TodoList>
+            <CompletedTodoList todos={todos} doDelete={doDelete}></CompletedTodoList>
           </div>
           <div className="w-full sm:w-auto flex-grow p-4">
 

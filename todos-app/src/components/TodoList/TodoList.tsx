@@ -2,7 +2,7 @@ import { Todo } from "../../core/Todo";
 import TodoRow from "./TodoRow";
 
 
-interface TodoListProps{
+export interface TodoListProps{
   todos:Todo[]
   doDelete:(todo:Todo)=>void
 
