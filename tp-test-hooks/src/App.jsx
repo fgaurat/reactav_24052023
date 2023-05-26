@@ -5,6 +5,9 @@ import UseReducer from "./components/UseReducer";
 import UseMemo from "./components/UseMemo";
 import { PureComponent01, PureComponent02 } from "./components/PureComponent";
 import UseRef from "./components/UseRef";
+import UseCustomHook from "./components/UseCustomHook";
+import UseLayoutEffect from "./components/UseLayoutEffect";
+import UseDefferedValue from "./components/UseDefferedValue";
 
 function App() {
   const [show, setShow] = useState(false);
@@ -45,6 +48,12 @@ function App() {
       <hr />
       <button onClick={handleClickRef}>Click App ref</button>
       <UseRef ref={childRef}/>
+      <hr />
+      <UseCustomHook/>
+      <hr />
+      <UseLayoutEffect/>
+      <hr />
+      <UseDefferedValue/>
     </>
   );
 }

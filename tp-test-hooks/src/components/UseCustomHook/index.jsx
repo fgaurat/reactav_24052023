@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useDebugValue, useState } from "react";
 
 
 const useIncrement=() =>{
     const [cpt,setCpt] = useState(0)
+    useDebugValue(`cpt : ${cpt}`)
     const inc = ()=>setCpt(c => c+1)
     const dec = ()=>setCpt(c => c-1)
 
