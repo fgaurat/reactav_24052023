@@ -24,7 +24,7 @@ function UseEffect() {
     },[count])
 
     return <div>
-    UseEffect
+    <h2>UseEffect</h2>UseEffect
     <br />
     {count}
   </div>;
