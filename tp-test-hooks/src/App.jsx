@@ -25,6 +25,12 @@ function App() {
     console.log("onClickPureComponent02")
   },[])
 
+  const handleClickRef = () =>{
+    childRef.current.focus()
+    console.log(childRef.current.theValue())
+    
+  }
+
   return (
     <>
       <button onClick={() => setShow((s) => !s)}>show UseEffect</button>
@@ -37,6 +43,7 @@ function App() {
       <PureComponent01 value={theValue}/>
       <PureComponent02 onClick={onClickPureComponent02}/>
       <hr />
+      <button onClick={handleClickRef}>Click App ref</button>
       <UseRef ref={childRef}/>
     </>
   );

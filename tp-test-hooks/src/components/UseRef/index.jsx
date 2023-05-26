@@ -1,4 +1,4 @@
-import React, { useImperativeHandle, useRef } from "react";
+import React, { forwardRef, useImperativeHandle, useRef } from "react";
 
 function UseRef(props,ref) {
   const inputRef = useRef();
@@ -24,4 +24,5 @@ function UseRef(props,ref) {
   );
 }
 
+UseRef = forwardRef(UseRef)
 export default UseRef;
