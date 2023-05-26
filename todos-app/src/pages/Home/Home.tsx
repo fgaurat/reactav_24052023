@@ -32,7 +32,7 @@ export default function Home() {
   const handleSubmit = async (todo: Todo) => {
     console.log(todo);
     const newTodo = await saveTodo(todo)
-    todos.push(newTodo!)
+    todos.push(newTodo)
 
     setTodos([...todos])
   };
