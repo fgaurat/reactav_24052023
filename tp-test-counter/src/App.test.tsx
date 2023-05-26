@@ -13,7 +13,7 @@ test('if Vite + React in App',async ()=>{
 })
 
 test('if initial value==0 in App',async ()=>{
-    render(<App/>)
+    render(<App/>) 
     expect(screen.getByText('count is 0')).toBeInTheDocument()
 })
 
