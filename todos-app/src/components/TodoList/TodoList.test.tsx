@@ -38,5 +38,11 @@ describe("Testing TodoList",()=>{
         render(<TodoList todos={todos} doDelete={()=>console.log("delete")}/>)
     })
 
+    test('Todolist must have 3 todos',()=>{
+        const r = render(<TodoList todos={todos} doDelete={()=>console.log("delete")}/>)
+        const tr = r.container.querySelectorAll('tbody>tr')
+        expect(tr.length).toBe(3)
+    })
+
 
 })
