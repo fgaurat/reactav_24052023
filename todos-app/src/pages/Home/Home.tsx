@@ -7,6 +7,7 @@ import TodoForm from "../../components/TodoForm/TodoForm";
 import { FormEvent, FormEventHandler } from "react";
 import useSaveTodo from "../../hooks/useSaveTodo";
 import HOCCompletedTodoList from "../../components/HOCCompletedTodoList/HOCCompletedTodoList";
+import TodoListFetch from "../../components/TodoListFetch";
 
 export default function Home() {
   const { todos, setTodos, loading, error } = useFetchTodos();
@@ -46,6 +47,7 @@ export default function Home() {
           <div className="w-full sm:w-auto flex-grow p-4">
             <TodoList todos={todos} doDelete={doDelete}></TodoList>
             <CompletedTodoList todos={todos} doDelete={doDelete}></CompletedTodoList>
+            <TodoListFetch/>
           </div>
           <div className="w-full sm:w-auto flex-grow p-4">
 
